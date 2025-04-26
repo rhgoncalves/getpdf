@@ -4,6 +4,5 @@ import uvicorn
 app = FastAPI()
 
 @app.get("/")
-def root_root():
+def read_root():
     return "Hello World"
-    
