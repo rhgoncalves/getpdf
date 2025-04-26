@@ -1,4 +1,2 @@
-flask
-PyPDF2
-io
-gunicorn
+Flask==2.2.0
+PyPDF2==1.26.0
