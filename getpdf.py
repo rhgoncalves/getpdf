@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
 
-app= FastAPI()
-Codeium:Refactor|Explain|Generate Docstring
+app = FastAPI()
+
 @app.get("/")
-def read root();
-	return "Hello World"
+def read_root():
+    return {"message": "Hello World"}
