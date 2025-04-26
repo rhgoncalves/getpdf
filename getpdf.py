@@ -1,9 +1,9 @@
-from flask import Flask, jsonify
+from fastapi import FastAPI
+import uvicorn
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route("/")
-def root():
-    return jsonify({"message": "Hello World"})
+@app.get("/")
+def root_root():
+    return "Hello World"
     
-
