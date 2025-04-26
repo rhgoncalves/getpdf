@@ -6,5 +6,5 @@ app = Flask(__name__)
 def root():
     return jsonify({"message": "Hello World"})
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8000)
+# Don't need the app.run() for Azure deployment.
+# Azure will use Gunicorn to run this app in production.
