@@ -1,6 +1,2 @@
-.
-├── app.py
-├── requirements.txt
-└── .github/
-    └── workflows/
-        └── azure-webapps-python.yml
+flask==2.3.3
+PyPDF2==3.0.1
