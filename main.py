@@ -1,13 +1,28 @@
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from flask import Flask, request, jsonify
+from PyPDF2 import PdfReader
+from io import BytesIO
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")  # Use @app.get() instead of @app.route() (FastAPI's convention)
-def root():
-    return JSONResponse(content={"Ricardo": "Hello World"})
+def extract_pdf_form_data(pdf_file):
+    reader = PdfReader(pdf_file)
+    fields = reader.get_form_text_fields()
+    return fields
 
-if __name__ == "__main__":
-    import uvicorn
+@app.route('/extract-pdf', methods=['POST'])
+def extract_pdf():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    if file and file.filename.endswith('.pdf'):
+        try:
+            fields = extract_pdf_form_data(file)
+            return jsonify(fields)
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+    return jsonify({"error": "Invalid file format"}), 400
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)  # Allow binding to any IP address in a container
+if __name__ == '__main__':
+    app.run(debug=True)
