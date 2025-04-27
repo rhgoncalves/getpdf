@@ -1,7 +1,6 @@
-from flask import Flask, jsonify
+from fastapi import FastAPI
 
-app = Flask(__name__)
-
+app = FastAPI(debug=True)
 @app.route("/")
 def root():
     return jsonify({"message": "Hello World"})
