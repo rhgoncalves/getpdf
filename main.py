@@ -7,5 +7,5 @@ def root():
     return jsonify({"message": "Hello World"})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)  # Ensure Flask listens on port 8080
+    app.run(host='0.0.0.0')  # Ensure Flask listens on port 8080
 
