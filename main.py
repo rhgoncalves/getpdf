@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")  # Use @app.get() instead of @app.route() (FastAPI's convention)
 def root():
-    return JSONResponse(content={"message": "Hello World"})
+    return JSONResponse(content={"Ricardo": "Hello World"})
 
 if __name__ == "__main__":
     import uvicorn
